@@ -1,9 +1,15 @@
 import React from 'react';
 
-export function TableSelection() {
+export function TableSelection({ selectedTable, setSelectedTable }) {
+  const handleClick = select => {
+    setSelectedTable(select);
+  };
+  
   return (
     <div>
-      <h3>Select table</h3>
+      <button onClick={() => handleClick('A')}>A</button>
+      <button onClick={() => handleClick('B')}>B</button>
+      <button onClick={() => handleClick('C')}>C</button>
     </div>
   );
 }

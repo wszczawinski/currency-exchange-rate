@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CurrencyTable, FavoriteCurrencies, TableSelection } from './components';
 
 import styles from './App.module.css';
 
 function App() {
+  const [selectedTable, setSelectedTable] = useState('A');
+
   if (!navigator.onLine) {
     return (
       <h1 className={styles.error}>
@@ -20,8 +22,11 @@ function App() {
       </header>
       <main>
         <FavoriteCurrencies />
-        <TableSelection />
-        <CurrencyTable />
+        <TableSelection
+          selectedTable={selectedTable}
+          setSelectedTable={setSelectedTable}
+        />
+        <CurrencyTable selectedTable={selectedTable} />
       </main>
       <footer>
         <p>&copy; w.szczawinski</p>
