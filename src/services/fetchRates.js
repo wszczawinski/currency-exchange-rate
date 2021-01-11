@@ -1,4 +1,4 @@
-export const fetchRates = selectedTable => {
+export const fetchRates = ({ selectedTable, setExchangeRates }) => {
   const url = `http://api.nbp.pl/api/exchangerates/tables/${selectedTable}?format=json`;
 
   return fetch(url)
@@ -11,6 +11,7 @@ export const fetchRates = selectedTable => {
       console.log('fetch');
       return rates;
     })
+    .then(rates => setExchangeRates(rates))
     .catch(err => {
       return err;
     });
