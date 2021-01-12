@@ -1,6 +1,12 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+  Currency exchange rates tracker
+</h1>
+<p align="center">
+    <img alt="Fizjos-Hemat" src="https://github.com/wszczawinski/currency-exchange-rate/blob/main/public/logo192.png" width="80" />
+</p>
+<p align="center">
+  This app will help you being up to date with exchange rates. You can display one of three available tables and add currencies to favorite.
+</p>
 
 ## Available Scripts
 
