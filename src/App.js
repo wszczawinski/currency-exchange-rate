@@ -17,8 +17,12 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <header>
+      <header className={styles.header}>
         <h1>Currency exchange rates</h1>
+        <p>
+          This app will help you being up to date with exchange rates. You can display one
+          of three available tables and add currencies to favorite.
+        </p>
       </header>
       <main>
         <FavoriteCurrencies />
@@ -29,7 +33,12 @@ function App() {
         <CurrencyTable selectedTable={selectedTable} />
       </main>
       <footer>
-        <p>&copy; w.szczawinski</p>
+        <p>
+          &copy;{' '}
+          <a href="https://github.com/wszczawinski" target="blank">
+            w.szczawinski
+          </a>
+        </p>
       </footer>
     </div>
   );
