@@ -5,11 +5,12 @@ import styles from './App.module.css';
 
 function App() {
   const [selectedTable, setSelectedTable] = useState('A');
+  const [favoriteList, setFavoriteList] = useState([]);
 
   if (!navigator.onLine) {
     return (
       <h1 className={styles.error}>
-        Oh! You're no longer online, did you disconnect your internet? :( <br />
+        Oh! You're no longer online, did you disconnect your internet? 😥 <br />
         Try reconnecting and refresh then the page.
       </h1>
     );
@@ -25,18 +26,21 @@ function App() {
         </p>
       </header>
       <main>
-        <FavoriteCurrencies />
+        <FavoriteCurrencies favoriteList={favoriteList} />
         <TableSelection
           selectedTable={selectedTable}
           setSelectedTable={setSelectedTable}
         />
-        <CurrencyTable selectedTable={selectedTable} />
+        <CurrencyTable
+          selectedTable={selectedTable}
+          favoriteList={favoriteList}
+          setFavoriteList={setFavoriteList}
+        />
       </main>
       <footer>
         <p>
-          &copy;{' '}
           <a href="https://github.com/wszczawinski" target="blank">
-            w.szczawinski
+            &copy; w.szczawinski
           </a>
         </p>
       </footer>

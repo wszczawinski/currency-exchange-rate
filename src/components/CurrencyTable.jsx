@@ -4,7 +4,7 @@ import { fetchRates } from '../services/fetchRates';
 
 import styles from './CurrencyTable.module.css';
 
-export function CurrencyTable({ selectedTable }) {
+export function CurrencyTable({ selectedTable, favoriteList, setFavoriteList }) {
   const [exchangeRates, setExchangeRates] = useState('Loading...');
 
   useEffect(() => {
@@ -13,9 +13,22 @@ export function CurrencyTable({ selectedTable }) {
       : fetchRates({ selectedTable, setExchangeRates });
   }, [selectedTable]);
 
+  const handleClick = currencyCode => {
+    let currencyList = favoriteList;
+    let clickedCurrency = { code: currencyCode, table: selectedTable };
+
+    if (currencyList.some(item => item.code === currencyCode)) {
+      currencyList = currencyList.filter(item => item.code !== currencyCode);
+    } else {
+      currencyList.push(clickedCurrency);
+    }
+    console.table(currencyList);
+    setFavoriteList(currencyList);
+  };
+
   return (
     <section className={styles.currencyTable}>
-      <div className={styles.singleCurrency}>
+      <div className={`${styles.singleCurrency} ${styles.tableDescription}`}>
         <p>Code</p>
         <p>Name</p>
         <div>
@@ -28,7 +41,11 @@ export function CurrencyTable({ selectedTable }) {
       {typeof exchangeRates === 'object' &&
         Array.from(exchangeRates).map(rate => {
           return (
-            <article className={styles.singleCurrency}>
+            <button
+              className={styles.singleCurrency}
+              onClick={() => handleClick(rate.code)}
+              key={rate.code}
+            >
               <div>{rate.code}</div>
               <div>{rate.currency}</div>
               <div>
@@ -36,7 +53,7 @@ export function CurrencyTable({ selectedTable }) {
                 <p>{rate.ask}</p>
                 <p>{rate.mid}</p>
               </div>
-            </article>
+            </button>
           );
         })}
     </section>
