@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './TableSelection.css';
 
-export function TableSelection({ selectedTable, setSelectedTable }) {
-  const [activeButton, setActiveButton] = useState(['', '', '']);
+export function TableSelection({ setSelectedTable }) {
+  const [activeButton, setActiveButton] = useState(['activeButton', '', '']);
 
   const handleClick = select => {
     let table = ['A', 'B', 'C'];

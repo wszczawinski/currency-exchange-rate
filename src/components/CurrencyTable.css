@@ -20,6 +20,12 @@
     align-items: stretch;
     background-color: rgba(256, 256, 256, 0.8);
     outline: none;
+    cursor: pointer;
+}
+
+.favorite {
+    border: 1px solid #38a738;
+    background-color: white;
 }
 
 .activeCurrency {

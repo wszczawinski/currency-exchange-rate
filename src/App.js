@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CurrencyTable, FavoriteCurrencies, TableSelection } from './components';
+import { loadTable } from './services/loadTable';
+import { fetchRates } from './services/fetchRates';
 
 import styles from './App.module.css';
 
 function App() {
   const [selectedTable, setSelectedTable] = useState('A');
-  const [favoriteList, setFavoriteList] = useState([]);
+  const [exchangeRates, setExchangeRates] = useState('Loading...');
+
+  useEffect(() => {
+    loadTable(selectedTable)
+      ? setExchangeRates(loadTable(selectedTable))
+      : fetchRates({ selectedTable, setExchangeRates });
+  }, [selectedTable]);
 
   if (!navigator.onLine) {
     return (
@@ -26,15 +34,12 @@ function App() {
         </p>
       </header>
       <main>
-        <FavoriteCurrencies favoriteList={favoriteList} />
-        <TableSelection
-          selectedTable={selectedTable}
-          setSelectedTable={setSelectedTable}
-        />
+        <FavoriteCurrencies />
+        <TableSelection setSelectedTable={setSelectedTable} />
         <CurrencyTable
           selectedTable={selectedTable}
-          favoriteList={favoriteList}
-          setFavoriteList={setFavoriteList}
+          exchangeRates={exchangeRates}
+          setExchangeRates={setExchangeRates}
         />
       </main>
       <footer>

@@ -1,34 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { loadTable } from '../services/loadTable';
-import { fetchRates } from '../services/fetchRates';
+import React from 'react';
+import './CurrencyTable.css';
 
-import styles from './CurrencyTable.module.css';
+export function CurrencyTable({ selectedTable, exchangeRates, setExchangeRates }) {
+  const handleClick = currency => {
+    let rates = exchangeRates;
 
-export function CurrencyTable({ selectedTable, favoriteList, setFavoriteList }) {
-  const [exchangeRates, setExchangeRates] = useState('Loading...');
-
-  useEffect(() => {
-    loadTable(selectedTable)
-      ? setExchangeRates(loadTable(selectedTable))
-      : fetchRates({ selectedTable, setExchangeRates });
-  }, [selectedTable]);
-
-  const handleClick = currencyCode => {
-    let currencyList = favoriteList;
-    let clickedCurrency = { code: currencyCode, table: selectedTable };
-
-    if (currencyList.some(item => item.code === currencyCode)) {
-      currencyList = currencyList.filter(item => item.code !== currencyCode);
+    if (rates.some(item => item.code === currency.code && item.favorite === 'favorite')) {
+      rates = rates.map(rate => {
+        if (rate.code === currency.code) rate.favorite = '';
+        return rate;
+      });
     } else {
-      currencyList.push(clickedCurrency);
+      rates = rates.map(rate => {
+        if (rate.code === currency.code) rate.favorite = 'favorite';
+        return rate;
+      });
     }
-    console.table(currencyList);
-    setFavoriteList(currencyList);
+
+    setExchangeRates(rates);
+    localStorage.setItem(`${selectedTable}table`, JSON.stringify(rates));
   };
 
   return (
-    <section className={styles.currencyTable}>
-      <div className={`${styles.singleCurrency} ${styles.tableDescription}`}>
+    <section className="currencyTable">
+      <div className="singleCurrency tableDescription">
         <p>Code</p>
         <p>Name</p>
         <div>
@@ -42,8 +37,8 @@ export function CurrencyTable({ selectedTable, favoriteList, setFavoriteList }) 
         Array.from(exchangeRates).map(rate => {
           return (
             <button
-              className={styles.singleCurrency}
-              onClick={() => handleClick(rate.code)}
+              className={`singleCurrency ${rate.favorite}`}
+              onClick={() => handleClick(rate)}
               key={rate.code}
             >
               <div>{rate.code}</div>
