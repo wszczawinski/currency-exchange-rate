@@ -8,7 +8,6 @@ export const fetchRates = ({ selectedTable, setExchangeRates }) => {
       const rates = data[0].rates;
       localStorage.setItem(`${selectedTable}table`, JSON.stringify(rates));
       localStorage.setItem('lastDate', JSON.stringify(today));
-      console.log('fetch');
       return rates;
     })
     .then(rates => setExchangeRates(rates))

@@ -1,4 +1,6 @@
 import React from 'react';
+import SingleCurrency from './SingleCurrency';
+
 import styles from './FavoriteCurrencies.module.css';
 
 export function FavoriteCurrencies({ exchangeRates, handleClick }) {
@@ -9,19 +11,7 @@ export function FavoriteCurrencies({ exchangeRates, handleClick }) {
         Array.from(exchangeRates).map(rate => {
           return (
             rate.favorite === 'favorite' && (
-              <button
-                className={`singleCurrency ${rate.favorite}`}
-                key={rate.code}
-                onClick={() => handleClick(rate)}
-              >
-                <div>{rate.code}</div>
-                <div>{rate.currency}</div>
-                <div>
-                  <p>{rate.bid}</p>
-                  <p>{rate.ask}</p>
-                  <p>{rate.mid}</p>
-                </div>
-              </button>
+              <SingleCurrency rate={rate} handleClick={handleClick} />
             )
           );
         })}

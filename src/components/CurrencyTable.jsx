@@ -1,26 +1,9 @@
 import React from 'react';
+import SingleCurrency from './SingleCurrency';
+
 import './CurrencyTable.css';
 
-export function CurrencyTable({ selectedTable, exchangeRates, setExchangeRates }) {
-  const handleClick = currency => {
-    let rates = exchangeRates;
-
-    if (rates.some(item => item.code === currency.code && item.favorite === 'favorite')) {
-      rates = rates.map(rate => {
-        if (rate.code === currency.code) rate.favorite = '';
-        return rate;
-      });
-    } else {
-      rates = rates.map(rate => {
-        if (rate.code === currency.code) rate.favorite = 'favorite';
-        return rate;
-      });
-    }
-
-    setExchangeRates(rates);
-    localStorage.setItem(`${selectedTable}table`, JSON.stringify(rates));
-  };
-
+export function CurrencyTable({ exchangeRates, handleClick }) {
   return (
     <section className="currencyTable">
       <div className="singleCurrency tableDescription">
@@ -35,21 +18,7 @@ export function CurrencyTable({ selectedTable, exchangeRates, setExchangeRates }
 
       {typeof exchangeRates === 'object' &&
         Array.from(exchangeRates).map(rate => {
-          return (
-            <button
-              className={`singleCurrency ${rate.favorite}`}
-              onClick={() => handleClick(rate)}
-              key={rate.code}
-            >
-              <div>{rate.code}</div>
-              <div>{rate.currency}</div>
-              <div>
-                <p>{rate.bid}</p>
-                <p>{rate.ask}</p>
-                <p>{rate.mid}</p>
-              </div>
-            </button>
-          );
+          return <SingleCurrency rate={rate} handleClick={handleClick} />;
         })}
     </section>
   );

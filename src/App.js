@@ -15,6 +15,25 @@ function App() {
       : fetchRates({ selectedTable, setExchangeRates });
   }, [selectedTable]);
 
+  const addRemoveFavorite = currency => {
+    let rates = exchangeRates;
+
+    if (rates.some(item => item.code === currency.code && item.favorite === 'favorite')) {
+      rates = rates.map(rate => {
+        if (rate.code === currency.code) rate.favorite = '';
+        return rate;
+      });
+    } else {
+      rates = rates.map(rate => {
+        if (rate.code === currency.code) rate.favorite = 'favorite';
+        return rate;
+      });
+    }
+
+    setExchangeRates(rates);
+    localStorage.setItem(`${selectedTable}table`, JSON.stringify(rates));
+  };
+
   if (!navigator.onLine) {
     return (
       <h1 className={styles.error}>
@@ -34,13 +53,12 @@ function App() {
         </p>
       </header>
       <main>
-        <FavoriteCurrencies />
-        <TableSelection setSelectedTable={setSelectedTable} />
-        <CurrencyTable
-          selectedTable={selectedTable}
+        <FavoriteCurrencies
+          handleClick={addRemoveFavorite}
           exchangeRates={exchangeRates}
-          setExchangeRates={setExchangeRates}
         />
+        <TableSelection setSelectedTable={setSelectedTable} />
+        <CurrencyTable handleClick={addRemoveFavorite} exchangeRates={exchangeRates} />
       </main>
       <footer>
         <p>
