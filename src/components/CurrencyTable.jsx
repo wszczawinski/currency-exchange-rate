@@ -1,33 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { loadTable } from '../services/loadTable';
-import { fetchRates } from '../services/fetchRates';
+import React from 'react';
+import SingleCurrency from './SingleCurrency';
 
-import styles from './CurrencyTable.module.css';
+import './CurrencyTable.css';
 
-export function CurrencyTable({ selectedTable }) {
-  const [exchangeRates, setExchangeRates] = useState('Loading...');
-
-  useEffect(() => {
-    loadTable(selectedTable)
-      ? setExchangeRates(loadTable(selectedTable))
-      : fetchRates({ selectedTable, setExchangeRates });
-  }, [selectedTable]);
-
+export function CurrencyTable({ exchangeRates, handleClick }) {
   return (
-    <section className={styles.CurrencyTable}>
+    <section className="currencyTable">
+      <div className="singleCurrency tableDescription">
+        <p>Code</p>
+        <p>Name</p>
+        <div>
+          <p>Price</p>
+          <p>(PLN)</p>
+        </div>
+      </div>
       {typeof exchangeRates === 'string' && <h3>{exchangeRates}</h3>}
 
       {typeof exchangeRates === 'object' &&
         Array.from(exchangeRates).map(rate => {
-          return (
-            <article className={styles.singleRate}>
-              <p>{rate.currency}</p>
-              <p>{rate.code}</p>
-              <p>{rate.bid}</p>
-              <p>{rate.ask}</p>
-              <p>{rate.mid}</p>
-            </article>
-          );
+          return <SingleCurrency rate={rate} handleClick={handleClick} />;
         })}
     </section>
   );
