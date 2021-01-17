@@ -18,18 +18,21 @@ export function TableSelection({ setSelectedTable }) {
       <h3>Select table</h3>
       <button
         className={`selectButton ${activeButton[0]}`}
+        data-testid={activeButton[0]}
         onClick={() => handleClick(0)}
       >
         Short
       </button>
       <button
         className={`selectButton ${activeButton[1]}`}
+        data-testid={activeButton[1]}
         onClick={() => handleClick(1)}
       >
         Medium
       </button>
       <button
         className={`selectButton ${activeButton[2]}`}
+        data-testid={activeButton[2]}
         onClick={() => handleClick(2)}
       >
         Long

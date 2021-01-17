@@ -8,4 +8,9 @@ describe('Table selection', () => {
 
     expect(getByText('Select table')).toBeInTheDocument();
   });
+  test('has one active button', async () => {
+    const { getByTestId } = render(<TableSelection></TableSelection>);
+    const activeButton = getByTestId('activeButton');
+    expect(activeButton.className).toEqual('selectButton activeButton');
+  });
 });
