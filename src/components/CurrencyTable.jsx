@@ -3,7 +3,7 @@ import SingleCurrency from './SingleCurrency';
 
 import './CurrencyTable.css';
 
-export function CurrencyTable({ exchangeRates, handleClick }) {
+export function CurrencyTable({ exchangeRates, handleClick, favoriteCodes }) {
   return (
     <section className="currencyTable">
       <div className="singleCurrency tableDescription">
@@ -18,7 +18,11 @@ export function CurrencyTable({ exchangeRates, handleClick }) {
 
       {typeof exchangeRates === 'object' &&
         Array.from(exchangeRates).map(rate => {
-          return <SingleCurrency rate={rate} handleClick={handleClick} />;
+          return favoriteCodes.includes(rate.code) ? (
+            <SingleCurrency rate={rate} handleClick={handleClick} favorite={true} />
+          ) : (
+            <SingleCurrency rate={rate} handleClick={handleClick} favorite={false} />
+          );
         })}
     </section>
   );

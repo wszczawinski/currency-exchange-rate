@@ -5,7 +5,7 @@ export function TableSelection({ setSelectedTable }) {
   const [activeButton, setActiveButton] = useState(['activeButton', '', '']);
 
   const handleClick = select => {
-    let table = ['A', 'B', 'C'];
+    let table = ['C', 'A', 'B'];
     let active = ['', '', ''];
     active[select] = 'activeButton';
 
@@ -14,25 +14,29 @@ export function TableSelection({ setSelectedTable }) {
   };
 
   return (
-    <div>
+    <section>
+      <h3>Select table</h3>
       <button
         className={`selectButton ${activeButton[0]}`}
+        data-testid={activeButton[0]}
         onClick={() => handleClick(0)}
       >
-        A
+        Short
       </button>
       <button
         className={`selectButton ${activeButton[1]}`}
+        data-testid={activeButton[1]}
         onClick={() => handleClick(1)}
       >
-        B
+        Medium
       </button>
       <button
         className={`selectButton ${activeButton[2]}`}
+        data-testid={activeButton[2]}
         onClick={() => handleClick(2)}
       >
-        C
+        Long
       </button>
-    </div>
+    </section>
   );
 }
