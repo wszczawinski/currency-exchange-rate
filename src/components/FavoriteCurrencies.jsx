@@ -1,7 +1,7 @@
 import React from 'react';
 import SingleCurrency from './SingleCurrency';
 
-import styles from './FavoriteCurrencies.module.css';
+import './FavoriteCurrencies.css';
 
 export function FavoriteCurrencies({
   exchangeRates,
@@ -10,13 +10,13 @@ export function FavoriteCurrencies({
   removeAllFavorites,
 }) {
   return (
-    <section className={styles.favoriteSection}>
-      <h3 className={styles.title}>Favorite Currencies</h3>
-      {favoriteCodes.length ? (
+    <section className={'favoriteSection'}>
+      <h3 className={'title'}>Favorite Currencies</h3>
+      {favoriteCodes.length >= 1 ? (
         ''
       ) : (
-        <p className={styles.information}>
-          💡Add your favorite currencies by clicking on the list below. <br/>
+        <p className={'information'}>
+          💡Add your favorite currencies by clicking on the list below. <br />
           ⚡Then click again to remove from favorites.
         </p>
       )}
@@ -31,7 +31,7 @@ export function FavoriteCurrencies({
         })}
 
       {favoriteCodes.length > 0 && (
-        <button onClick={removeAllFavorites} className={styles.removebtn}>
+        <button onClick={removeAllFavorites} className={'removebtn'}>
           Remove all
         </button>
       )}

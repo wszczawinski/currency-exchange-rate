@@ -8,7 +8,7 @@ import { fetchRates } from './services/fetchRates';
 import styles from './App.module.css';
 
 function App() {
-  const [selectedTable, setSelectedTable] = useState('A');
+  const [selectedTable, setSelectedTable] = useState('C');
   const [exchangeRates, setExchangeRates] = useState('Loading...');
   const [favoriteCodes, setFavoriteCodes] = useState(
     JSON.parse(localStorage.getItem(`${selectedTable}favorites`)) || []
