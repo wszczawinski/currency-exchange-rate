@@ -2,9 +2,12 @@
     width: 85vw;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     font-size: 0.8rem;
+    margin: 0 auto;
     margin-bottom: 3vh;
+
 }
 
 .singleCurrency {

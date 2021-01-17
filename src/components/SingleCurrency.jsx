@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function SingleCurrency({ rate, handleClick }) {
+export default function SingleCurrency({ rate, handleClick, favorite }) {
   return (
     <button
-      className={`singleCurrency ${rate.favorite}`}
+      className={`singleCurrency ${favorite ? 'favorite' : ''}`}
       onClick={() => handleClick(rate)}
       key={rate.code}
     >
