@@ -2,13 +2,32 @@
   Currency exchange rates tracker
 </h1>
 <p align="center">
-    <img alt="Fizjos-Hemat" src="https://github.com/wszczawinski/currency-exchange-rate/blob/main/public/logo192.png" width="80" />
+    <img alt="currency-rates" src="https://github.com/wszczawinski/currency-exchange-rate/blob/main/public/logo192.png" width="80" />
 </p>
 <p align="center">
-  This app will help you being up to date with exchange rates. You can display one of three available tables and add currencies to favorite.
+  This app will help you being up to date with exchange rates. <br/>
+  You can display one of three available tables, then:<br/>
+  💡Add your favorite currencies by clicking on the list below. <br />
+  ⚡Then click again to remove from favorites.
 </p>
 
-## Available Scripts
+## Basic funcionality
+
+- list of favourite currencies, which user wants to follow + save list in local storage
+- possibility to add currency from 3 avaliable tables to the favorite list
+- possibility to remove one or all currencies from the list
+- possibility to cancel currency remove - confirmation popup
+
+## Install and Launch Project 🚀
+
+```bash
+git clone https://github.com/wszczawinski/currency-exchange-rate
+cd currency-exchange-rate
+npm install
+npm start
+```
+
+## Available Scripts - additional info
 
 In the project directory, you can run:
 
