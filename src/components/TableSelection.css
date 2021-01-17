@@ -4,28 +4,17 @@
     font-weight: 700;
     padding: 5px 20px;
     background-color: white;
-    margin: 20px 0;
+    margin-top: 10px;
+    margin-bottom: 50px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .selectButton:hover {
     background-color: rgba(256, 256, 256, 0.1);
-    border: 1px solid gray;
+    border: 1.5px solid gray;
 }
-
-.selectButton:nth-child(1) {
-    border-radius: 5px 0 0 5px;
-}
-
-.selectButton:nth-child(2) {
-    border-radius: 0;
-}
-
-.selectButton:nth-child(3) {
-    border-radius: 0 5px 5px 0;
-}
-
 
 .activeButton {
     border: 1.5px solid #5cb85c;

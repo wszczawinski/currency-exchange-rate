@@ -54,6 +54,26 @@ function App() {
     localStorage.setItem(`${selectedTable}favorites`, JSON.stringify(newFavorite));
   };
 
+  const removeAllFavorites = () => {
+    confirmAlert({
+      title: 'Confirm removing',
+      message: `Are you sure you want to remove everything from favorites?`,
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            setFavoriteCodes([]);
+            localStorage.setItem(`${selectedTable}favorites`, JSON.stringify([]));
+          },
+        },
+        {
+          label: 'No',
+          onClick: () => {},
+        },
+      ],
+    });
+  };
+
   if (!navigator.onLine) {
     return (
       <h1 className={styles.error}>
@@ -77,6 +97,7 @@ function App() {
           handleClick={handleFavorite}
           exchangeRates={exchangeRates}
           favoriteCodes={favoriteCodes}
+          removeAllFavorites={removeAllFavorites}
         />
         <TableSelection setSelectedTable={setSelectedTable} />
         <CurrencyTable
